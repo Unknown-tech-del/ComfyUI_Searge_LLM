@@ -27,8 +27,8 @@ If you get error message about missing `llama-cpp`, try these manual steps:
 - It's important to run these commands in the `ComfyUI_windows_portable/python_embeded` directory.
 - Run the following commands:
 ```
-python -m pip install https://github.com/oobabooga/llama-cpp-python-cuBLAS-wheels/releases/download/cpu/llama_cpp_python-0.2.89+cpuavx2-cp311-cp311-win_amd64.whl
-python -m pip install https://github.com/oobabooga/llama-cpp-python-cuBLAS-wheels/releases/download/textgen-webui/llama_cpp_python_cuda-0.2.89+cu121-cp311-cp311-win_amd64.whl
+python -m pip install https://github.com/oobabooga/llama-cpp-python-cuBLAS-wheels/releases/download/cpu/llama_cpp_python-0.2.94+cpuavx2-cp312-cp312-win_amd64.whl
+python -m pip install https://github.com/oobabooga/llama-cpp-python-cuBLAS-wheels/releases/download/textgen-webui/llama_cpp_python_cuda-0.2.94+cu121-cp312-cp312-win_amd64.whl
 ```
 
 ### FAQ
