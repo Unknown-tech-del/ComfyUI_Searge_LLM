@@ -56,11 +56,16 @@ class Searge_LLM_Node:
         model_path = os.path.join(GLOBAL_MODELS_DIR, model)
 
         if model.endswith(".gguf"):
-            generate_kwargs = {'max_tokens': max_tokens, 'temperature': 1.0, 'top_p': 0.9, 'top_k': 50,
-                               'repeat_penalty': 1.2}
+            generate_kwargs = {
+                'max_tokens': max_tokens,
+                'temperature': 1.0,
+                'top_p': 0.9,
+                'top_k': 50,
+                'repetition_penalty': 1.2,
+            }
 
             if adv_options_config:
-                for option in ['temperature', 'top_p', 'top_k', 'repeat_penalty']:
+                for option in ['temperature', 'top_p', 'top_k', 'repetition_penalty']:
                     if option in adv_options_config:
                         generate_kwargs[option] = adv_options_config[option]
 
@@ -173,7 +178,10 @@ class Searge_LLM_Node:
                                 f"\nDescription : {text}"},
                 ]
 
-            llm_result = model_to_use.create_chat_completion(messages, **generate_kwargs)
+            llama_kwargs = generate_kwargs.copy()
+            if 'repetition_penalty' in llama_kwargs:
+                llama_kwargs['repeat_penalty'] = llama_kwargs.pop('repetition_penalty')
+            llm_result = model_to_use.create_chat_completion(messages, **llama_kwargs)
 
             return (llm_result['choices'][0]['message']['content'].strip(), text)
         else:
@@ -233,7 +241,7 @@ class Searge_AdvOptionsNode:
             "temperature": temperature,
             "top_p": top_p,
             "top_k": top_k,
-            "repeat_penalty": repetition_penalty,
+            "repetition_penalty": repetition_penalty,
         }
 
         return (options_config,)
