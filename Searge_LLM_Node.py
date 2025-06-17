@@ -5,7 +5,7 @@ import folder_paths
 
 GLOBAL_MODELS_DIR = os.path.join(folder_paths.models_dir, "llm_gguf")
 
-WEB_DIRECTORY = "./web/assets/js"
+WEB_DIRECTORY = "./web"
 
 DEFAULT_INSTRUCTIONS = 'Generate a prompt from "{prompt}"'
 
